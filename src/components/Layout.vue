@@ -4,13 +4,14 @@
       <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
         <el-menu
           :default-active="$route.path"
-          :default-openeds="['0']"
+          :default-openeds="openeds"
           :unique-opened="true"
           :router="true"
+          :select="selectMenu"
         >
           <!-- <el-menu :default-openeds="['1']">-->
             <template v-for="(item,k) in  baseRoutesList">
-                  <el-submenu :key="k" :index='k+" "'>
+                  <el-submenu :key="k" :index='k+""'>
                     <template slot="title">{{item.name}}{{k}}</template>
                     <template v-for="(child,i) in  item.children">
                       <el-menu-item :key="i" :index="item.path + child.path" >{{ child.CNName }}</el-menu-item>
@@ -44,6 +45,9 @@
 #map {
   height: 500px;
 }
+.el-main{
+    min-height: 700px;
+}
 </style>
 
 <script>
@@ -51,8 +55,7 @@ export default {
   data() {
     return {
       baseRoutesList: [],
-      lightRoutesList: [],//灯光
-      materialRoutesList: []//材质
+      openeds:[],
     };
   },
   created() {
@@ -68,6 +71,14 @@ export default {
          this.materialRoutesList.push(lstRoutes[i]);
       }
     }*/
-  }
+  },
+  mounted(){
+
+  },
+  methods:{
+     selectMenu(index){       
+        this.openeds=[index];
+      }
+    }
 };
 </script>

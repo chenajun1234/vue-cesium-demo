@@ -1,19 +1,22 @@
 <template>
-  <div>
-     <div class="user">
-      <h2>User {{ $route.params.id }}</h2>
-    <!--   <router-view></router-view> -->
-    </div>
+  <div>    
+      <div id="cesiumContainer"></div>     
   </div> 
 </template>
 
 <script>
+import Cesium from 'cesium/Cesium'
 export default {
   name: 'HelloWorld',
   data () {
-    return {      
+    return {
+       'viewer' : {}
     }
-  }
+  }, 
+    mounted:function () {
+        //创建viewer实例
+        this.viewer = new Cesium.Viewer('cesiumContainer');
+    }
 }
 </script>
 
